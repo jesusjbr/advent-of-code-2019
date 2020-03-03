@@ -90,6 +90,9 @@ pub mod computer {
                 diagnostic_code: 0,
             }
         }
+        pub fn add_input(&mut self, value: i32) {
+            self.input.push(value);
+        }
 
         fn update_current_instruction(&mut self) {
             let instruction = self.int_code[self.current_position];
@@ -205,7 +208,7 @@ pub mod computer {
 
         pub fn run_until_output(&mut self) {
             self.execute_step();
-            while self.current_instruction.operation != Operation::Output {
+            while (self.current_instruction.operation != Operation::Output) && !self.finished {
                 self.execute_step();
             }
         }
